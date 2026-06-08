@@ -139,6 +139,41 @@
       border-radius: 12px;
     }
 
+    /* ---- Pantalla móvil ---- */
+    #mobile-screen {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      text-align: center;
+      padding: 32px 24px;
+      gap: 16px;
+    }
+
+    #mobile-screen p {
+      font-size: 15px;
+      color: #aaaaaa;
+      max-width: 280px;
+      line-height: 1.6;
+    }
+
+    #mobile-exit-button {
+      margin-top: 8px;
+      padding: 14px 36px;
+      background-color: #e03131;
+      color: #ffffff;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    #mobile-exit-button:active {
+      background-color: #c92a2a;
+    }
+
     /* ---- Pantalla de cierre (cubre la confirmación de Notion) ---- */
     #closing-screen {
       display: none;
@@ -196,6 +231,12 @@
     </div>
   </div>
 
+  <!-- Pantalla móvil -->
+  <div id="mobile-screen">
+    <p>El formulario se abrió en una nueva pestaña. Cuando termines de llenarlo, regresa aquí y presiona Salir.</p>
+    <button id="mobile-exit-button">Salir</button>
+  </div>
+
   <!-- Pantalla de cierre -->
   <div id="closing-screen">
     <h1>¡Gracias por completar el formulario!</h1>
@@ -225,7 +266,9 @@
       if (USERS.hasOwnProperty(username) && USERS[username] === password) {
         loginError.textContent = '';
         if (isMobile) {
-          window.location.href = NOTION_URL;
+          window.open(NOTION_URL, '_blank');
+          loginScreen.style.display = 'none';
+          document.getElementById('mobile-screen').style.display = 'flex';
         } else {
           loginScreen.style.display = 'none';
           formScreen.style.display = 'flex';
@@ -240,6 +283,12 @@
     });
 
     var closingScreen = document.getElementById('closing-screen');
+
+    document.getElementById('mobile-exit-button').addEventListener('click', function () {
+      document.getElementById('mobile-screen').style.display = 'none';
+      closingScreen.style.display = 'flex';
+      window.close();
+    });
 
     exitButton.addEventListener('click', function () {
       // Cubre el formulario (y la confirmación de Notion) con una pantalla propia
