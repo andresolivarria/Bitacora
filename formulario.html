@@ -208,6 +208,8 @@
       'Usuario': '12345'
     };
     var iframeLoaded = false;
+    var NOTION_URL = 'https://charming-cartoon-eba.notion.site/ebd//3796afc4fc1e8011ad38d81d2c5ef7b3';
+    var isMobile = /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
 
     var loginScreen = document.getElementById('login-screen');
     var formScreen = document.getElementById('form-screen');
@@ -222,11 +224,15 @@
 
       if (USERS.hasOwnProperty(username) && USERS[username] === password) {
         loginError.textContent = '';
-        loginScreen.style.display = 'none';
-        formScreen.style.display = 'flex';
-        if (!iframeLoaded) {
-          document.getElementById('notion-iframe').src = 'https://charming-cartoon-eba.notion.site/ebd//3796afc4fc1e8011ad38d81d2c5ef7b3';
-          iframeLoaded = true;
+        if (isMobile) {
+          window.location.href = NOTION_URL;
+        } else {
+          loginScreen.style.display = 'none';
+          formScreen.style.display = 'flex';
+          if (!iframeLoaded) {
+            document.getElementById('notion-iframe').src = NOTION_URL;
+            iframeLoaded = true;
+          }
         }
       } else {
         loginError.textContent = 'Usuario o contraseña incorrectos.';
