@@ -188,7 +188,8 @@
     </div>
     <div class="form-container">
       <iframe
-        src="https://charming-cartoon-eba.notion.site/ebd//3796afc4fc1e8011ad38d81d2c5ef7b3"
+        id="notion-iframe"
+        src=""
         title="Formulario de Notion"
         allowfullscreen
       ></iframe>
@@ -222,6 +223,10 @@
         loginError.textContent = '';
         loginScreen.style.display = 'none';
         formScreen.style.display = 'flex';
+        var iframe = document.getElementById('notion-iframe');
+        if (!iframe.src) {
+          iframe.src = 'https://charming-cartoon-eba.notion.site/ebd//3796afc4fc1e8011ad38d81d2c5ef7b3';
+        }
       } else {
         loginError.textContent = 'Usuario o contraseña incorrectos.';
       }
