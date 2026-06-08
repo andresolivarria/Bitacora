@@ -100,17 +100,13 @@
       min-height: 100vh;
     }
 
-    .top-bar {
-      display: flex;
-      justify-content: flex-end;
-      padding: 12px 20px;
-    }
-
     #exit-button {
-      padding: 12px 28px;
+      display: block;
+      margin: 20px auto;
+      padding: 14px 48px;
       background-color: #e03131;
       color: #ffffff;
-      border: 1px solid #e03131;
+      border: none;
       border-radius: 8px;
       font-size: 16px;
       font-weight: 600;
@@ -119,7 +115,6 @@
 
     #exit-button:hover {
       background-color: #c92a2a;
-      border-color: #c92a2a;
     }
 
     .form-container {
@@ -127,7 +122,7 @@
       width: 100%;
       max-width: 900px;
       margin: 0 auto;
-      padding: 0 20px 20px;
+      padding: 0 20px 0;
     }
 
     .form-container iframe {
@@ -218,9 +213,6 @@
 
   <!-- Pantalla del formulario -->
   <div id="form-screen">
-    <div class="top-bar">
-      <button id="exit-button">Salir</button>
-    </div>
     <div class="form-container">
       <iframe
         id="notion-iframe"
@@ -229,6 +221,7 @@
         allowfullscreen
       ></iframe>
     </div>
+    <button id="exit-button">Salir</button>
   </div>
 
   <!-- Pantalla móvil -->
